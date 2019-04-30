@@ -1,0 +1,13 @@
+default: &default
+  consul:
+    host: localhost
+    port: 8500
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
