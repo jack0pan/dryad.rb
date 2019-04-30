@@ -1,5 +1,7 @@
 # Dryad
 
+[![Build Status](https://travis-ci.org/jack0pan/dryad.rb.svg?branch=master)](https://travis-ci.org/jack0pan/dryad.rb)
+
 It provides functions such as hot loading of configuration files.
 
 ## Installation
