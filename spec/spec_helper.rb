@@ -1,3 +1,5 @@
+ENV['DRYAD_CONFIG_FILE'] = File.join(Dir.getwd, "spec/dummy/config/dryad.yml")
+
 require "bundler/setup"
 require "dryad"
 

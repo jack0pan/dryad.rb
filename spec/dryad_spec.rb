@@ -5,13 +5,13 @@ RSpec.describe Dryad do
 
   it "can be configured with config file" do
     environment = ENV["RAILS_ENV"] || ENV["RACK_ENV"] || "default"
-    default_consul_config = YAML.load(ERB.new(File.read("config/dryad.yml")).result)[environment]["consul"]
+    default_consul_config = YAML.load(ERB.new(File.read(ENV['DRYAD_CONFIG_FILE'])).result)[environment]["consul"]
     expect(Dryad.configuration.consul[:host]).to eq(default_consul_config["host"])
     expect(Dryad.configuration.consul[:port]).to eq(default_consul_config["port"])
   end
 
   it "can be configured with block" do
-    consul_config = { host: "consul.example", port: 8500 }
+    consul_config = { host: "block.consul.example", port: 8500 }
     Dryad.configure do |config|
       config.consul = consul_config
     end

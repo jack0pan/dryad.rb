@@ -4,6 +4,8 @@ require "yaml"
 require "erb"
 require "diplomat"
 
+DRYAD_COFNIG_FILE = ENV["DRYAD_CONFIG_FILE"] || "config/dryad.yml"
+
 module Dryad
   class Error < StandardError; end
 
@@ -22,7 +24,7 @@ module Dryad
 
   def self.configure_with_file
     environment = ENV["RAILS_ENV"] || ENV["RACK_ENV"] || "default"
-    opts = YAML.load(ERB.new(File.read("config/dryad.yml")).result)[environment] || Configuration::DEFAULT_OPTIONS
+    opts = YAML.load(ERB.new(File.read(DRYAD_COFNIG_FILE)).result)[environment] || Configuration::DEFAULT_OPTIONS
 
     if opts.respond_to? :deep_symbolize_keys!
       opts.deep_symbolize_keys!
@@ -50,4 +52,4 @@ module Dryad
   end
 end
 
-Dryad.configure_with_file if File.exist?("config/dryad.yml")
+Dryad.configure_with_file if File.exist?(DRYAD_COFNIG_FILE)
