@@ -1,5 +1,4 @@
 require "dryad/core/version"
-require "dryad/dto/service_instance"
 
 module Dryad
   module Core

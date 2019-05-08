@@ -17,7 +17,3 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
-
-# Dir[
-#   "#{File.join(File.pwd, 'spec')}/**/*.rb"
-# ].each {|f| require f}

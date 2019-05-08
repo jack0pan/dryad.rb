@@ -1,6 +1,4 @@
 
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 version = File.read(File.expand_path("DRYAD_VERSION", __dir__)).strip
 
 Gem::Specification.new do |spec|
