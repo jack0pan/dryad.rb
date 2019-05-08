@@ -1,6 +1,7 @@
 RSpec.describe Dryad do
   it "has a valid version number" do
-    expect(Dryad::VERSION).to eq('0.1.0')
+    version = File.read(File.expand_path("../../DRYAD_VERSION", __dir__)).strip
+    expect(Dryad::Core::VERSION).to eq(version)
   end
 
   it "can be configured with config file" do

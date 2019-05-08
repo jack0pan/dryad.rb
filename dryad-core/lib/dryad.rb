@@ -1,5 +1,5 @@
 require "dryad/configuration"
-require "dryad/version"
+require "dryad/core"
 require "yaml"
 require "erb"
 require "diplomat"

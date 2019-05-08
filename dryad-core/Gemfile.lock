@@ -1,8 +1,6 @@
 PATH
   remote: .
   specs:
-    dryad (0.1.0.alpha)
-      dryad-core (= 0.1.0.alpha)
     dryad-core (0.1.0.alpha)
       diplomat
 
@@ -37,7 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  dryad!
+  dryad-core!
   rake (~> 10.0)
   rspec (~> 3.0)
 
