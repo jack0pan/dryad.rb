@@ -3,7 +3,6 @@ require "dryad/core"
 require "dryad/dto/service_instance"
 require "yaml"
 require "erb"
-require "diplomat"
 
 DRYAD_COFNIG_FILE = ENV["DRYAD_CONFIG_FILE"] || "config/dryad.yml"
 
@@ -20,7 +19,6 @@ module Dryad
 
   def self.configure
     yield(configuration)
-    configure_diplomat
   end
 
   def self.configure_with_file
@@ -34,7 +32,6 @@ module Dryad
     end
 
     @configuration = Configuration.new(opts)
-    configure_diplomat
   end
 
   private
@@ -43,12 +40,6 @@ module Dryad
       symkey = k.respond_to?(:to_sym) ? k.to_sym : k
       hash[symkey] = hash.delete k
       symbolize_keys_deep! hash[symkey] if hash[symkey].is_a? Hash
-    end
-  end
-
-  def self.configure_diplomat
-    ::Diplomat.configure do |config|
-      config.url = "http://#{configuration.consul[:host]}:#{configuration.consul[:port]}"
     end
   end
 end

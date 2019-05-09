@@ -2,9 +2,12 @@ PATH
   remote: .
   specs:
     dryad (0.1.0.alpha)
+      dryad-consul (= 0.1.0.alpha)
+      dryad-core (= 0.1.0.alpha)
+    dryad-consul (0.1.0.alpha)
+      diplomat
       dryad-core (= 0.1.0.alpha)
     dryad-core (0.1.0.alpha)
-      diplomat
 
 GEM
   remote: https://rubygems.org/
