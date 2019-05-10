@@ -5,6 +5,6 @@ RSpec.describe Dryad::Consul do
   end
 
   it "has configured dependencies" do
-    expect(::Diplomat.configuration.url).to eq("http://file.consul.example:8500")
+    expect(::Diplomat.configuration.url).to eq("http://localhost:8500")
   end
 end

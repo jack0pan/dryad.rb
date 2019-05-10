@@ -1,5 +1,5 @@
 module Dryad
-  module DTO
+  module Core
     class ServiceInstance
       attr_accessor :name, :schema, :address, :port
 
