@@ -1,5 +1,6 @@
 require "dryad/configuration"
 require "dryad/core"
+require "dryad/dto/service_instance"
 require "yaml"
 require "erb"
 
