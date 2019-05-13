@@ -15,7 +15,7 @@ module Dryad
         end
 
         def service_instances(name, schema, groups)
-          all_services = ServiceClient.get(Service.full_name(schema, name), :all)
+          all_services = ServiceClient.get(Dryad::Core::Service.full_name(schema, name), :all)
           services = []
           all_services.each do |service|
             groups.each do |group|
