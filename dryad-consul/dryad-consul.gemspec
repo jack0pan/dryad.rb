@@ -9,9 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pan Jie"]
   spec.email         = ["panjie@growingio.com"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{Dryad consul library.}
+  spec.description   = %q{Dryad consul is the adapter for consul.}
   spec.homepage      = "https://github.com/jack0pan/dryad.rb"
+  spec.license       = "MIT"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

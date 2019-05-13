@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Config Management & Service Registration and Discovery}
   spec.description   = %q{Dryad is a configration management client. It provides functions such as hot loading of configuration files.}
   spec.homepage      = "https://github.com/jack0pan/dryad.rb"
+  spec.license       = "MIT"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
