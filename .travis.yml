@@ -10,11 +10,10 @@ before_install:
   - gem install bundler -v 2.0.1
   - curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
   - unzip consul.zip
-  - sudo chown root:root consul
-  - sudo mv consul /usr/local/bin/
-  - consul -autocomplete-install
-  - complete -C /usr/local/bin/consul consul
-  - sudo systemctl enable consul
-  - sudo systemctl start consul
+  - mkdir -p ~/bin
+  - mv consul ~/bin
+  - export PATH="~/bin:$PATH"
+before_script:
+  - consul agent
 script:
   - bundle exec rake spec
