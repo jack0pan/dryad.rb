@@ -1,16 +1,16 @@
 PATH
   remote: .
   specs:
-    dryad (0.1.0.alpha)
-      dryad-cluster (= 0.1.0.alpha)
-      dryad-consul (= 0.1.0.alpha)
-      dryad-core (= 0.1.0.alpha)
-    dryad-cluster (0.1.0.alpha)
-      dryad-core (= 0.1.0.alpha)
-    dryad-consul (0.1.0.alpha)
+    dryad (0.1.0)
+      dryad-cluster (= 0.1.0)
+      dryad-consul (= 0.1.0)
+      dryad-core (= 0.1.0)
+    dryad-cluster (0.1.0)
+      dryad-core (= 0.1.0)
+    dryad-consul (0.1.0)
       diplomat
-      dryad-core (= 0.1.0.alpha)
-    dryad-core (0.1.0.alpha)
+      dryad-core (= 0.1.0)
+    dryad-core (0.1.0)
 
 GEM
   remote: https://rubygems.org/
