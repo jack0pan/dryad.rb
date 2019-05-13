@@ -13,6 +13,7 @@ before_install:
   - mkdir -p ~/bin
   - mv consul ~/bin
   - export PATH="~/bin:$PATH"
-  - consul agent
+  - consul version
+  - consul agent -bind=localhost
 script:
   - bundle exec rake spec
