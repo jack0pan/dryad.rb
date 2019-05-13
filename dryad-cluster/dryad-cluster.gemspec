@@ -1,14 +1,16 @@
 
-version = File.read(File.expand_path("DRYAD_VERSION", __dir__)).strip
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "dryad/cluster/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "dryad"
-  spec.version       = version
+  spec.name          = "dryad-cluster"
+  spec.version       = Dryad::Cluster::VERSION
   spec.authors       = ["Pan Jie"]
   spec.email         = ["panjie@growingio.com"]
 
-  spec.summary       = %q{Config Management & Service Registration and Discovery}
-  spec.description   = %q{Dryad is a configration management client. It provides functions such as hot loading of configuration files.}
+  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
+  spec.description   = %q{Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/jack0pan/dryad.rb"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
@@ -16,10 +18,9 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
-  spec.add_dependency "dryad-core", version
-  spec.add_dependency "dryad-consul", version
-  spec.add_dependency "dryad-cluster", version
+  spec.add_dependency "dryad-core", Dryad::Cluster::VERSION
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"

@@ -1,16 +1,8 @@
 PATH
   remote: .
   specs:
-    dryad (0.1.0.alpha)
-      dryad-cluster (= 0.1.0.alpha)
-      dryad-consul (= 0.1.0.alpha)
-      dryad-core (= 0.1.0.alpha)
     dryad-cluster (0.1.0.alpha)
       dryad-core (= 0.1.0.alpha)
-    dryad-consul (0.1.0.alpha)
-      diplomat
-      dryad-core (= 0.1.0.alpha)
-    dryad-core (0.1.0.alpha)
 
 GEM
   remote: https://rubygems.org/
@@ -20,6 +12,10 @@ GEM
     diplomat (2.2.4)
       deep_merge (~> 1.0, >= 1.0.1)
       faraday (~> 0.9)
+    dryad-consul (0.1.0.alpha)
+      diplomat
+      dryad-core (= 0.1.0.alpha)
+    dryad-core (0.1.0.alpha)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     multipart-post (2.1.0)
@@ -43,7 +39,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  dryad!
+  dryad-cluster!
+  dryad-consul
   rake (~> 10.0)
   rspec (~> 3.0)
 
