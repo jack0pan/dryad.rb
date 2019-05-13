@@ -20,8 +20,8 @@ module Dryad
         @load_balancing = options[:load_balancing]
       end
 
-      def type
-        TYPE
+      def type_name
+        Dryad::Core::Service::TYPE
       end
 
       class << self

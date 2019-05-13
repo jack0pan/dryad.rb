@@ -1,6 +1,6 @@
 module Dryad
-  module Core
-    class Service
+  module Consul
+    class Service < Dryad::Core::Service
       def to_registers
         portals.map do |portal|
           {
@@ -17,7 +17,7 @@ module Dryad
       private
       def tags(portal)
         tags = [
-          "type = \"#{type}\"",
+          "type = \"#{type_name}\"",
           "priority = \"#{priority}\"",
           "group = \"#{group}\"",
           "schema = \"#{portal.schema}\"",

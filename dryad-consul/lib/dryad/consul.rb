@@ -3,7 +3,7 @@ require "dryad"
 require "dryad/consul/version"
 require "dryad/consul/service_client"
 require "dryad/consul/service_registry"
-require_relative "core/service"
+require "dryad/consul/service"
 
 module Dryad
   module Consul

@@ -6,7 +6,7 @@ RSpec.describe Dryad::Consul::ServiceRegistry do
       pattern: '/*',
       non_certifications: ['/*']
     )
-    @service = Dryad::Core::Service.new(
+    @service = Dryad::Consul::Service.new(
       name: 'rails',
       address: '127.0.0.1',
       group: 'staging',

@@ -1,7 +1,7 @@
 RSpec.describe Dryad::Core::Service do
   it "create with default options" do
     service = Dryad::Core::Service.new
-    expect(service.type).to eq(Dryad::Core::Service::TYPE)
+    expect(service.type_name).to eq(Dryad::Core::Service::TYPE)
     expect(service.portals).to eq([])
     expect(service.load_balancing).to eq([])
   end
