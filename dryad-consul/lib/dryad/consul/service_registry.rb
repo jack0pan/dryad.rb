@@ -15,19 +15,28 @@ module Dryad
         end
 
         def service_instances(name, schema, groups)
-          all_services = ServiceClient.get(Dryad::Core::Service.full_name(schema, name), :all)
-          services = []
+          all_services = ::Diplomat::Health.service(Dryad::Core::Service.full_name(schema, name))
+          service_instances = []
           all_services.each do |service|
-            groups.each do |group|
-              services << service if service.ServiceTags.include?("group = \"#{group}\"")
+            service_hash = service.Service
+            if !service_hash["Meta"].nil? && service_hash["Meta"].has_key?("group") &&
+              groups.include?(service_hash["Meta"]["group"])
+              service_instances << service_hash
+            else
+              groups.each do |group|
+                if service_hash["Tags"].include?("group = \"#{group}\"")
+                  service_instances << service_hash
+                  break
+                end
+              end
             end
           end
-          services.map do |service|
+          service_instances.map do |service|
             Dryad::Core::ServiceInstance.new(
               name: name,
               schema: schema,
-              address: service.ServiceAddress,
-              port: service.ServicePort
+              address: service["Address"],
+              port: service["Port"]
             )
           end
         end
