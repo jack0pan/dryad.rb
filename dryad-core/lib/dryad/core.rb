@@ -4,6 +4,7 @@ require "dryad/core/service"
 require "dryad/core/portal"
 require "dryad/core/load_balancing"
 require "dryad/core/schema"
+require "dryad/core/config_desc"
 
 module Dryad
   module Core
