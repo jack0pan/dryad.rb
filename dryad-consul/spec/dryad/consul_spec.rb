@@ -1,7 +1,6 @@
 RSpec.describe Dryad::Consul do
   it "has a version number" do
-    version = File.read(File.expand_path("../../../DRYAD_VERSION", __dir__)).strip
-    expect(Dryad::Consul::VERSION).to eq(version)
+    expect(Dryad::Consul::VERSION).not_to be(nil)
   end
 
   it "has configured dependencies" do

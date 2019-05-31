@@ -1,9 +1,11 @@
 
-version = File.read(File.expand_path("DRYAD_VERSION", __dir__)).strip
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "dryad/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "dryad"
-  spec.version       = version
+  spec.version       = Dryad::VERSION
   spec.authors       = ["Pan Jie"]
   spec.email         = ["panjie@growingio.com"]
 
@@ -18,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 
-  spec.add_dependency "dryad-core", version
-  spec.add_dependency "dryad-consul", version
-  spec.add_dependency "dryad-cluster", version
+  spec.add_dependency "dryad-core", Dryad::VERSION
+  spec.add_dependency "dryad-consul", Dryad::VERSION
+  spec.add_dependency "dryad-cluster", Dryad::VERSION
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
