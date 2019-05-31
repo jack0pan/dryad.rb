@@ -13,6 +13,7 @@ module Dryad
 
     ::Diplomat.configure do |config|
       config.url = "http://#{Dryad.configuration.consul[:host]}:#{Dryad.configuration.consul[:port]}"
+      config.options = { headers: { "X-Consul-Token" => Dryad.configuration.consul[:token] } } if Dryad.configuration.consul[:token]
     end
   end
 end
