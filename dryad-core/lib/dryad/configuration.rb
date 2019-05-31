@@ -1,10 +1,10 @@
 module Dryad
   class Configuration
-    attr_accessor :consul, :namespace, :group, :registry, :service
+    attr_accessor :consul, :namespace, :group, :registry, :provider, :service
 
     DEFAULT_OPTIONS = {
       consul: {
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 8500
       },
       service: {}
@@ -16,6 +16,7 @@ module Dryad
       @namespace = opts[:namespace]
       @group = opts[:group]
       @registry = opts[:registry]
+      @provider = opts[:provider]
       @service = opts[:service]
     end
   end
