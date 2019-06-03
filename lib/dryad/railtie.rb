@@ -1,5 +1,3 @@
-# require "dryad"
-# require "dryad/core"
 require "rails"
 
 module Dryad
@@ -7,7 +5,8 @@ module Dryad
     initializer "dryad.set_configs" do
       ActiveSupport.on_load(:dryad) do
         environment = ENV["RAILS_ENV"] || "default"
-        Dryad.configure { Dryad.load_config[environment].deep_symbolize_keys }
+        config = Dryad.load_config[environment].deep_symbolize_keys
+        Dryad.configuration = Dryad::Configuration.new(config)
       end
     end
   end
