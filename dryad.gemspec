@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
   spec.add_dependency "dryad-core", Dryad::VERSION
   spec.add_dependency "dryad-consul", Dryad::VERSION

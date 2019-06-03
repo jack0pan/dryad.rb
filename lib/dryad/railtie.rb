@@ -1,4 +1,5 @@
-require "dryad"
+# require "dryad"
+# require "dryad/core"
 require "rails"
 
 module Dryad

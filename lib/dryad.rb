@@ -1,10 +1,22 @@
 require "dryad/version"
+require "dryad/configuration"
 require "dryad/railtie" if defined?(Rails)
-require "dryad"
+require "dryad/core"
 require "dryad/consul"
 require "dryad/cluster"
 
 module Dryad
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
   CONFIG_PATH = "config/drayd.yml"
 
   def self.load_config
