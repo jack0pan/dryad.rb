@@ -1,10 +1,5 @@
-ENV['DRYAD_CONFIG_FILE'] = File.expand_path("dummy/config/dryad.yml", __dir__)
-
 require "bundler/setup"
-require "yaml"
-require "erb"
 require "dryad"
-require "dryad/core"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

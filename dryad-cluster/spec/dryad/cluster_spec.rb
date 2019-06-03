@@ -1,5 +1,9 @@
 RSpec.describe Dryad::Cluster do
   before do
+    Dryad.configure do |config|
+      config.registry = 'Dryad::Consul::ServiceRegistry'
+    end
+
     @portal = Dryad::Core::Portal.new(
       schema: Dryad::Core::Schema::HTTP,
       port: 3000,

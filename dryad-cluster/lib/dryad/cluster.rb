@@ -9,7 +9,6 @@ module Dryad
     class NoServicesError < Error; end
 
     class << self
-      REGISTRY = Object.const_get(Dryad.configuration.registry)
       CLUSTERS = {}
 
       def round_robin(schema, service_name)
@@ -29,7 +28,8 @@ module Dryad
       end
 
       def sorted_instances(service_name, schema, groups)
-        sis = REGISTRY.service_instances(service_name, schema, groups)
+        registry = Object.const_get(Dryad.configuration.registry)
+        sis = registry.service_instances(service_name, schema, groups)
         sis.sort {|a, b| "#{a.address}:#{a.port}" <=> "#{b.address}:#{b.port}"}
       end
     end
