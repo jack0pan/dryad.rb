@@ -17,7 +17,7 @@ module Dryad
   def self.configure
     yield(configuration)
   end
-  CONFIG_PATH = "config/drayd.yml"
+  CONFIG_PATH = "config/dryad.yml"
 
   def self.load_config
     yaml = Pathname.new(CONFIG_PATH)
