@@ -1,12 +1,12 @@
 require "rails"
+require "dryad"
 
 module Dryad
   module Consul
     class Railtie < Rails::Railtie
       initializer "dryad_consul.set_consul" do
-        ::Diplomat.configure do |config|
-          config.url = "http://#{Dryad.configuration.consul[:host]}:#{Dryad.configuration.consul[:port]}"
-          config.options = { headers: { "X-Consul-Token" => Dryad.configuration.consul[:token] } } if Dryad.configuration.consul[:token]
+        ActiveSupport.on_load(:dryad_consul) do
+          Dryad::Consul.configure_consul(Dryad.configuration)
         end
       end
 
@@ -18,8 +18,8 @@ module Dryad
           ActiveRecord::Base.establish_connection(Rails.env.to_sym)
         rescue Dryad::Core::ConfigurationNotFound => e
           raise e
-        rescue e
-          puts e.message
+        rescue Exception => e
+          Rails.looger.warn e.message
         end
       end
     end

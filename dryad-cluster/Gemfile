@@ -2,7 +2,3 @@ source "https://rubygems.org"
 
 # Specify your gem's dependencies in dryad-cluster.gemspec
 gemspec
-
-group :test do
-  gem 'dryad-consul'
-end

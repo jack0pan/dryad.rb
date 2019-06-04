@@ -1,5 +1,7 @@
 require 'concurrent'
-require "dryad"
+require "dryad/core"
+require "dryad/consul"
+require "dryad/cluster/railtie" if defined?(Rails)
 require "dryad/cluster/version"
 require "dryad/cluster/round_robin"
 
@@ -9,10 +11,11 @@ module Dryad
     class NoServicesError < Error; end
 
     class << self
+      attr_accessor :configuration
       CLUSTERS = {}
 
       def round_robin(schema, service_name)
-        groups = ['_global_', Dryad.configuration.group]
+        groups = ['_global_', @configuration.group]
         full_name = Dryad::Core::Service.full_name(schema, service_name)
         if CLUSTERS[full_name].nil?
           CLUSTERS[full_name] = Dryad::Cluster::RoundRobin.new
@@ -28,7 +31,7 @@ module Dryad
       end
 
       def sorted_instances(service_name, schema, groups)
-        registry = Object.const_get(Dryad.configuration.registry)
+        registry = Object.const_get(@configuration.registry)
         sis = registry.service_instances(service_name, schema, groups)
         sis.sort {|a, b| "#{a.address}:#{a.port}" <=> "#{b.address}:#{b.port}"}
       end

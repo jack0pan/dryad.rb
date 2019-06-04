@@ -1,7 +1,5 @@
-ENV['DRYAD_CONFIG_FILE'] = File.expand_path("dummy/config/dryad.yml", __dir__)
-
 require "bundler/setup"
-require "dryad"
+require "dryad/core"
 require "dryad/consul"
 require "dryad/cluster"
 

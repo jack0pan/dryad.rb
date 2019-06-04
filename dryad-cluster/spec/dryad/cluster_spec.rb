@@ -1,8 +1,13 @@
 RSpec.describe Dryad::Cluster do
   before do
-    Dryad.configure do |config|
-      config.registry = 'Dryad::Consul::ServiceRegistry'
-    end
+    config = OpenStruct.new({
+      consul: { host: "127.0.0.1", port: 8500 },
+      namespace: "growing-crm",
+      group: "staging",
+      registry: "Dryad::Consul::ServiceRegistry"
+    })
+    Dryad::Consul.configure_consul(config)
+    Dryad::Cluster.configuration = config
 
     @portal = Dryad::Core::Portal.new(
       schema: Dryad::Core::Schema::HTTP,
