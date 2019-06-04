@@ -19,7 +19,7 @@ module Dryad
         rescue Dryad::Core::ConfigurationNotFound => e
           raise e
         rescue Exception => e
-          Rails.looger.warn e.message
+          Rails.logger.warn e.message
         end
       end
     end
