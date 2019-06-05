@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    dryad-cluster (0.2.5)
+    dryad-cluster (0.2.6)
       concurrent-ruby (~> 1.1, >= 1.1.5)
-      dryad-consul (= 0.2.5)
-      dryad-core (= 0.2.5)
+      dryad-consul (= 0.2.6)
+      dryad-core (= 0.2.6)
 
 GEM
   remote: https://rubygems.org/
@@ -15,10 +15,10 @@ GEM
     diplomat (2.2.5)
       deep_merge (~> 1.0, >= 1.0.1)
       faraday (~> 0.9)
-    dryad-consul (0.2.5)
+    dryad-consul (0.2.6)
       diplomat (~> 2.2, >= 2.2.4)
-      dryad-core (= 0.2.5)
-    dryad-core (0.2.5)
+      dryad-core (= 0.2.6)
+    dryad-core (0.2.6)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     multipart-post (2.1.1)
