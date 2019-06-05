@@ -13,9 +13,14 @@ module Dryad
     class Error < StandardError; end
     class << self
       def configure_consul(configuration)
+        consul = configuration.consul
+        if consul[:username].nil? || consul[:password].nil?
+          url = "http://#{consul[:host]}:#{consul[:port]}"
+        else
+          url = "http://#{consul[:username]}:#{consul[:password]}@#{consul[:host]}:#{consul[:port]}"
+        end
         ::Diplomat.configure do |config|
-          config.url = "http://#{configuration.consul[:host]}:#{configuration.consul[:port]}"
-          config.options = { headers: { "X-Consul-Token" => configuration.consul[:token] } } if configuration.consul[:token]
+          config.url = url
         end
       end
     end
