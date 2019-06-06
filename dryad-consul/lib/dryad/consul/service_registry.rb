@@ -4,13 +4,13 @@ module Dryad
       class << self
         def register(service)
           service.to_registers.each do |register|
-            ServiceClient.register(register)
+            ::Diplomat::Service.register(register)
           end
         end
 
         def deregister(service)
           service.portals.each do |portal|
-            ServiceClient.deregister(portal.id)
+            ::Diplomat::Service.deregister(portal.id)
           end
         end
 
