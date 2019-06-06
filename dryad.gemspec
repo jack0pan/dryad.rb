@@ -21,13 +21,13 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.files         = FileList['lib/**/*.rb', '*'].to_a
+  spec.files         = FileList['bin/*', 'lib/**/*.rb', '*'].to_a
 
   spec.add_dependency "dryad-core", Dryad::VERSION
   spec.add_dependency "dryad-consul", Dryad::VERSION
   spec.add_dependency "dryad-cluster", Dryad::VERSION
 
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 12.3"
   spec.add_development_dependency "rspec", "~> 3.0"
 end
