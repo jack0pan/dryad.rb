@@ -13,13 +13,15 @@ module Dryad
       initializer "dryad_consul.update_active_record_connection" do
         config.after_initialize do
           db_path = "#{Dryad.configuration.namespace}/#{Dryad.configuration.group}/database.yml"
-          db_config = Dryad::Consul::ConfigProvider.load(db_path)
-          ActiveRecord::Base.configurations = YAML.load(ERB.new(db_config.payload).result)
-          ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-        rescue Dryad::Core::ConfigurationNotFound => e
-          raise e
-        rescue Exception => e
-          Rails.logger.warn e.message
+          begin
+            db_config = Dryad::Consul::ConfigProvider.load(db_path)
+            ActiveRecord::Base.configurations = YAML.load(ERB.new(db_config.payload).result)
+            ActiveRecord::Base.establish_connection(Rails.env.to_sym)
+          rescue Dryad::Core::ConfigurationNotFound => e
+            raise e
+          rescue Exception => e
+            Rails.logger.warn e.message
+          end
         end
       end
     end
