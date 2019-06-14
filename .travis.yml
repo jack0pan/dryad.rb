@@ -8,6 +8,7 @@ env:
   - CONSUL_VERSION=1.4.4
 before_install:
   - gem install bundler -v 2.0.1
+  - gem install rake -v 12.3.2
   - curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
   - unzip consul.zip
   - mkdir -p ~/bin
