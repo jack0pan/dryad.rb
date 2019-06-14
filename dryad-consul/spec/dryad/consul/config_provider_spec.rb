@@ -10,7 +10,7 @@ RSpec.describe Dryad::Consul::ConfigProvider do
   end
 
   it "load configuration with path" do
-    cd = Dryad::Consul::ConfigProvider.load(@key)
+    cd = Dryad::Consul::ConfigProvider.instance.load(@key)
     expect(cd.path).to eq(@key)
     expect(cd.payload).to eq(@value)
     expect(cd.version).to be > 0

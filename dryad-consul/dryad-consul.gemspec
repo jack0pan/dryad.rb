@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "dryad-core", Dryad::Consul::VERSION
   spec.add_dependency "diplomat", "~> 2.2", ">= 2.2.4"
+  spec.add_dependency "concurrent-ruby", "~> 1.1", ">= 1.1.5"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
