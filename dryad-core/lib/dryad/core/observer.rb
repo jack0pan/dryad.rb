@@ -1,7 +1,7 @@
 module Dryad
   module Core
-    class ConfigProvider
-      def load(path, observer = nil)
+    class Observer
+      def update(time, result, exception)
         raise "Implement this method"
       end
     end
