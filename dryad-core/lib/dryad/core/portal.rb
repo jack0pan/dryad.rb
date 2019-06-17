@@ -9,11 +9,13 @@ module Dryad
         :non_certifications => []
       }
 
-      def initialize(options = DEFAULT_OPTIONS)
+      def initialize(opts = {})
+        options = DEFAULT_OPTIONS.merge(opts)
         @id = SecureRandom.uuid
         @schema = options[:schema]
         @port = options[:port]
         @pattern = options[:pattern]
+        @check = options[:check]
         @non_certifications = options[:non_certifications]
       end
     end

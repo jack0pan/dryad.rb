@@ -9,7 +9,8 @@ module Dryad
             Address: address,
             Port: portal.port,
             EnableTagOverride: true,
-            Tags: tags(portal)
+            Tags: tags(portal),
+            Checks: checks(portal)
           }
         end
       end
@@ -27,6 +28,14 @@ module Dryad
           tags << "non_certifications = \"#{portal.non_certifications.join(",")}\""
         end
         tags.concat(load_balancing.map{|lb| "load_balancing = \"#{lb}\"" })
+      end
+
+      def checks(portal)
+        if portal.check.nil? || !portal.check.is_a?(Dryad::Consul::HealthCheck)
+          []
+        else
+          [portal.check.attributes]
+        end
       end
     end
   end
