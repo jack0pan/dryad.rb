@@ -23,7 +23,7 @@ module Dryad
           observer = ::Dryad::Consul::DBConfigObserver.new
           begin
             db_config = Dryad::Consul::ConfigProvider.instance.load(db_path, observer)
-            raise Dryad::Core::ConfigurationNotFound, db_path
+            raise Dryad::Core::ConfigurationNotFound, db_path if db_config.nil?
             ActiveRecord::Base.configurations = YAML.load(ERB.new(db_config.payload).result)
             ActiveRecord::Base.establish_connection(Rails.env.to_sym)
           rescue Dryad::Core::ConfigurationNotFound => e
