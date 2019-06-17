@@ -8,6 +8,8 @@ require "dryad/consul/service"
 require "dryad/consul/key_value_client"
 require "dryad/consul/config_provider"
 
+require "erb"
+
 module Dryad
   module Consul
     class Error < StandardError; end
@@ -17,7 +19,7 @@ module Dryad
         if consul[:username].nil? || consul[:password].nil?
           url = "http://#{consul[:host]}:#{consul[:port]}"
         else
-          url = "http://#{consul[:username]}:#{consul[:password]}@#{consul[:host]}:#{consul[:port]}"
+          url = "http://#{consul[:username]}:#{ERB::Util.url_encode(consul[:password])}@#{consul[:host]}:#{consul[:port]}"
         end
         ::Diplomat.configure do |config|
           config.url = url
