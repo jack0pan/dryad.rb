@@ -5,6 +5,10 @@ module Dryad
         @last_version = 0
       end
 
+      def version=(version)
+        @last_version = version
+      end
+
       def update(time, config_desc, exception)
         if exception
           puts "(#{time}) [#{self.class.to_s}] #{exception.message}"

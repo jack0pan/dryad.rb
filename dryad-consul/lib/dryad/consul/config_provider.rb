@@ -16,6 +16,7 @@ module Dryad
         if config.nil?
           nil
         else
+          observer.version = config.ModifyIndex
           add_observer(observer, path)
           Dryad::Core::ConfigDesc.new(path, config.Value, config.ModifyIndex)
         end
