@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dryad-core (0.3.2)
+    dryad-core (0.3.4)
 
 GEM
   remote: https://rubygems.org/
