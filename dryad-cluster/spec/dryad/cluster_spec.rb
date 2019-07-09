@@ -30,13 +30,14 @@ RSpec.describe Dryad::Cluster do
   end
 
   it "rounds robin" do
-    Dryad::Consul::ServiceRegistry.register(@service)
+    registry = Dryad::Consul::ServiceRegistry.instance
+    registry.register(@service)
     service_instance = Dryad::Cluster.round_robin(
       Dryad::Core::Schema::HTTP,
       @service.name
     )
     expect(service_instance.name).to eq(@service.name)
     expect(service_instance.address).to eq(@service.address)
-    Dryad::Consul::ServiceRegistry.deregister(@service)
+    registry.deregister(@service)
   end
 end

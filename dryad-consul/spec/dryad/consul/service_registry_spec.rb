@@ -17,9 +17,10 @@ RSpec.describe Dryad::Consul::ServiceRegistry do
   end
 
   it "gets the instances for a service" do
-    Dryad::Consul::ServiceRegistry.register(@service)
+    registry = Dryad::Consul::ServiceRegistry.instance
+    registry.register(@service)
     registers = @service.to_registers
-    service_instances = Dryad::Consul::ServiceRegistry.service_instances(
+    service_instances = registry.service_instances(
       @service.name,
       Dryad::Core::Schema::HTTP,
       [@service.group]
@@ -28,6 +29,6 @@ RSpec.describe Dryad::Consul::ServiceRegistry do
     service_instances.zip(registers).each do |instance, register|
       expect(instance.name).to eq(register[:Name])
     end
-    Dryad::Consul::ServiceRegistry.deregister(@service)
+    registry.deregister(@service)
   end
 end

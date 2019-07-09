@@ -4,6 +4,7 @@ require "dryad/consul"
 require "dryad/cluster/railtie" if defined?(Rails)
 require "dryad/cluster/version"
 require "dryad/cluster/round_robin"
+require "dryad/cluster/service_observer"
 
 module Dryad
   module Cluster
@@ -19,7 +20,8 @@ module Dryad
         full_name = Dryad::Core::Service.full_name(schema, service_name)
         if CLUSTERS[full_name].nil?
           CLUSTERS[full_name] = Dryad::Cluster::RoundRobin.new
-          CLUSTERS[full_name].set_services(sorted_instances(service_name, schema, groups))
+          observer = Dryad::Cluster::ServiceObserver.new(CLUSTERS[full_name])
+          CLUSTERS[full_name].set_services(sorted_instances(service_name, schema, groups, observer))
         end
         begin
           retries ||= 0
@@ -30,9 +32,9 @@ module Dryad
         end
       end
 
-      def sorted_instances(service_name, schema, groups)
-        registry = Object.const_get(@configuration.registry)
-        sis = registry.service_instances(service_name, schema, groups)
+      def sorted_instances(service_name, schema, groups, observer)
+        registry = Object.const_get(@configuration.registry).instance
+        sis = registry.service_instances(service_name, schema, groups, observer)
         sis.sort {|a, b| "#{a.address}:#{a.port}" <=> "#{b.address}:#{b.port}"}
       end
     end

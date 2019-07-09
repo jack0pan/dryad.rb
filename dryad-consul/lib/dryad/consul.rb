@@ -7,6 +7,7 @@ require "dryad/consul/service_registry"
 require "dryad/consul/service"
 require "dryad/consul/key_value_client"
 require "dryad/consul/config_provider"
+require "dryad/consul/service_observer"
 
 require "erb"
 
