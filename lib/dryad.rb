@@ -1,9 +1,9 @@
 require "dryad/version"
 require "dryad/configuration"
 require "dryad/core"
-require "dryad/railtie" if defined?(Rails)
 require "dryad/consul"
 require "dryad/cluster"
+require "dryad/railtie" if defined?(Rails)
 
 module Dryad
   class << self

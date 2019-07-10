@@ -1,7 +1,6 @@
 require "diplomat"
 require "dryad/core"
 require "dryad/consul/config_observer"
-require "dryad/consul/railtie" if defined?(Rails)
 require "dryad/consul/version"
 require "dryad/consul/service_registry"
 require "dryad/consul/service"

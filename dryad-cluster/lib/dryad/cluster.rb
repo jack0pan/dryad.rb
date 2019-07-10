@@ -1,7 +1,6 @@
 require 'concurrent'
 require "dryad/core"
 require "dryad/consul"
-require "dryad/cluster/railtie" if defined?(Rails)
 require "dryad/cluster/version"
 require "dryad/cluster/round_robin"
 require "dryad/cluster/service_observer"
