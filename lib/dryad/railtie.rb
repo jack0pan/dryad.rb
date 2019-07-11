@@ -47,39 +47,11 @@ module Dryad
 
       initializer "dryad_consul.register_services" do
         config.after_initialize do
-          name = Dryad.configuration.namespace
-          group = Dryad.configuration.group
-          service_config = Dryad.configuration.service
-          address = service_config[:address] || Socket.ip_address_list.detect{|ai| ai.ipv4_private?}&.ip_address
-          schemas = Dryad::Core::Schema.constants.map{|s| Dryad::Core::Schema.const_get(s).to_sym}
-          portals = service_config.slice(schemas).map do |k, v|
-            check_config = v[:check]
-            check = if check_config
-              interval = check_config[:interval] || 10
-              if check_config[:url]
-                http = check_config[:url]
-                http = "#{k.to_s}://#{address}:#{port}#{url}" if http.start_with?("/")
-                timeout = check_config[:timeout] || 5
-                Dryad::Consul::HTTPHealthCheck.new(http, interval, timeout, interval * 10)
-              elsif check_config[:grpc_use_tls]
-                grpc = "#{address}:#{port}/#{name}"
-                Dryad::Consul::GRPCHealthCheck.new(grpc, interval, check_config[:grpc_use_tls], interval * 10)
-              else
-                Dryad::Consul::TTLHealthCheck.new(interval, interval * 10)
-              end
-            else
-              Dryad::Consul::TTLHealthCheck.new(10, 100)
-            end
-            Dryad::Core::Portal.new(v.slice(:port, :non_certifications).merge({check: check}))
-          end
-          service = Dryad::Consul::Service.new({
-            name: name,
-            group: group,
-            address: address,
-            portals: portals,
-            priority: service_config[:priority] || 0,
-            load_balancing: service_config[:load_balancing]
-          })
+          service = Dryad::Consul.build_service(
+            Dryad.configuration.namespace,
+            Dryad.configuration.group,
+            Dryad.configuration.service
+          )
           Dryad::Consul::ServiceRegistry.register(service)
         end
       end
