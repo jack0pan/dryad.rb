@@ -1,19 +1,19 @@
 PATH
   remote: .
   specs:
-    dryad (1.0.0)
-      dryad-cluster (= 1.0.0)
-      dryad-consul (= 1.0.0)
-      dryad-core (= 1.0.0)
-    dryad-cluster (1.0.0)
+    dryad (1.0.1)
+      dryad-cluster (= 1.0.1)
+      dryad-consul (= 1.0.1)
+      dryad-core (= 1.0.1)
+    dryad-cluster (1.0.1)
       concurrent-ruby (~> 1.1, >= 1.1.5)
-      dryad-consul (= 1.0.0)
-      dryad-core (= 1.0.0)
-    dryad-consul (1.0.0)
+      dryad-consul (= 1.0.1)
+      dryad-core (= 1.0.1)
+    dryad-consul (1.0.1)
       concurrent-ruby (~> 1.1, >= 1.1.5)
       diplomat (~> 2.2, >= 2.2.4)
-      dryad-core (= 1.0.0)
-    dryad-core (1.0.0)
+      dryad-core (= 1.0.1)
+    dryad-core (1.0.1)
 
 GEM
   remote: https://rubygems.org/
