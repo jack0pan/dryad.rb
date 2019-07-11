@@ -36,5 +36,14 @@ module Dryad
     rescue => e
       raise e, "Cannot load dryad configuration:\n#{e.message}", e.backtrace
     end
+
+    def register_services
+      service = Dryad::Consul.build_service(
+        Dryad.configuration.namespace,
+        Dryad.configuration.group,
+        Dryad.configuration.service
+      )
+      Dryad::Consul::ServiceRegistry.instance.register(service)
+    end
   end
 end

@@ -44,17 +44,6 @@ module Dryad
           end
         end
       end
-
-      initializer "dryad_consul.register_services" do
-        config.after_initialize do
-          service = Dryad::Consul.build_service(
-            Dryad.configuration.namespace,
-            Dryad.configuration.group,
-            Dryad.configuration.service
-          )
-          Dryad::Consul::ServiceRegistry.instance.register(service)
-        end
-      end
     end
   end
   ActiveSupport.run_load_hooks(:dryad_consul, Consul)
