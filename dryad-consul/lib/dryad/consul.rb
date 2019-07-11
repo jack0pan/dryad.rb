@@ -7,6 +7,7 @@ require "dryad/consul/service"
 require "dryad/consul/key_value_client"
 require "dryad/consul/config_provider"
 require "dryad/consul/service_observer"
+require "dryad/consul/health_check"
 
 module Dryad
   module Consul
@@ -52,9 +53,13 @@ module Dryad
           Socket.ip_address_list.detect{|ai| ai.ipv4_private?}&.ip_address
         end
         schemas = Dryad::Core::Schema.constants.map{|s| Dryad::Core::Schema.const_get(s).to_sym}
-        portals = service_config.slice(schemas).map do |k, v|
-          check = build_check(v[:check], name, address, port)
-          Dryad::Core::Portal.new(v.slice(:port, :non_certifications).merge({check: check}))
+        portals = service_config.slice(*schemas).map do |k, v|
+          params = v.slice(:port, :non_certifications).merge({
+            schema: k.to_s,
+            pattern: v[:pattern] || "/.*",
+            check: build_check(v[:check], name, address, v[:port])
+          })
+          Dryad::Core::Portal.new(params)
         end
         Dryad::Consul::Service.new({
           name: name,
@@ -62,7 +67,7 @@ module Dryad
           address: address,
           portals: portals,
           priority: service_config[:priority] || 0,
-          load_balancing: service_config[:load_balancing]
+          load_balancing: service_config[:load_balancing] || []
         })
       end
     end

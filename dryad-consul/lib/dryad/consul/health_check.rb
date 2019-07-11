@@ -6,6 +6,13 @@ module Dryad
       def initialize(duration)
         @deregister_critial_service_after = duration
       end
+
+      def attributes
+        self.instance_variables.map do |attribute|
+          key = attribute.to_s.gsub('@', '')
+          [key, self.instance_variable_get(attribute)]
+        end.to_h
+      end
     end
 
     class TTLHealthCheck < HealthCheck
