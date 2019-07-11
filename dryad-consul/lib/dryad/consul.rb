@@ -29,12 +29,12 @@ module Dryad
       def build_check(check_config, name, address, port)
         if check_config
           interval = check_config[:interval] || 10
-          if check_config[:url]
+          if !check_config[:url].nil?
             http = check_config[:url]
             http = "#{k.to_s}://#{address}:#{port}#{url}" if http.start_with?("/")
             timeout = check_config[:timeout] || 5
             Dryad::Consul::HTTPHealthCheck.new(http, interval, timeout, interval * 10)
-          elsif check_config[:grpc_use_tls]
+          elsif !check_config[:grpc_use_tls].nil?
             grpc = "#{address}:#{port}/#{name}"
             Dryad::Consul::GRPCHealthCheck.new(grpc, interval, check_config[:grpc_use_tls], interval * 10)
           else
