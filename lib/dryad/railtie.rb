@@ -52,7 +52,7 @@ module Dryad
             Dryad.configuration.group,
             Dryad.configuration.service
           )
-          Dryad::Consul::ServiceRegistry.register(service)
+          Dryad::Consul::ServiceRegistry.instance.register(service)
         end
       end
     end
