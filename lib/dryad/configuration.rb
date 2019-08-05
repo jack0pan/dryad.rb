@@ -1,6 +1,6 @@
 module Dryad
   class Configuration
-    attr_accessor :consul, :namespace, :group, :registry, :provider, :service
+    attr_accessor :consul, :namespace, :group, :registry, :provider, :service, :cluster
 
     DEFAULT_OPTIONS = {
       consul: {
@@ -18,6 +18,7 @@ module Dryad
       @registry = opts[:registry]
       @provider = opts[:provider]
       @service = opts[:service]
+      @cluster = opts[:cluster]
     end
   end
 end

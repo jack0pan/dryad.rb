@@ -32,8 +32,19 @@ module Dryad
       end
 
       def sorted_instances(service_name, schema, groups, observer)
-        registry = Object.const_get(@configuration.registry).instance
-        sis = registry.service_instances(service_name, schema, groups, observer)
+        sis = if @configuration.cluster.nil?
+                registry = Object.const_get(@configuration.registry).instance
+                registry.service_instances(service_name, schema, groups, observer)
+              else
+                (@configuration.cluster[service_name.to_sym] || []).map do |s|
+                  Dryad::Core::ServiceInstance.new(
+                    name: service_name,
+                    schema: schema,
+                    address: s[:address],
+                    port: s[:port]
+                  )
+                end
+              end
         sis.sort {|a, b| "#{a.address}:#{a.port}" <=> "#{b.address}:#{b.port}"}
       end
     end
