@@ -1,7 +1,9 @@
 RSpec.describe Dryad::Core::Portal do
   it "creates with default options" do
-    portal = Dryad::Core::Portal.new
+    portal = build(:portal)
     expect(portal.id).not_to be(nil)
+    expect(portal.schema).to eq(Dryad::Core::Schema::HTTP)
+    expect(portal.port).to eq(80)
     expect(portal.non_certifications).to eq([])
   end
 

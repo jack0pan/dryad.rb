@@ -1,7 +1,9 @@
 RSpec.describe Dryad::Core::ServiceInstance do
   it 'can be created and access' do
-    si = Dryad::Core::ServiceInstance.new(name: 'grpc-service', schema: 'grpc', address: 'localhost', port: 19000)
-    expect(si.name).to eq('grpc-service')
-    expect(si.schema).to eq('grpc')
+    si = build(:service_instance)
+    expect(si.name).to eq('rails')
+    expect(si.schema).to eq(Dryad::Core::Schema::HTTP)
+    expect(si.address).to eq('localhost')
+    expect(si.port).to eq(3000)
   end
 end

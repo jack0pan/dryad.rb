@@ -1,11 +1,8 @@
 RSpec.describe Dryad::Core::ConfigDesc do
   it "can be created and accessed" do
-    path = 'path/to/key'
-    payload = 'payload for path'
-    version = 1
-    cd = Dryad::Core::ConfigDesc.new(path, payload, version)
-    expect(cd.path).to eq(path)
-    expect(cd.payload).to eq(payload)
-    expect(cd.version).to eq(version)
+    cd = build(:config_desc)
+    expect(cd.path).to eq('rails/config/database.yml')
+    expect(cd.payload).not_to be(nil)
+    expect(cd.version).to eq(1)
   end
 end

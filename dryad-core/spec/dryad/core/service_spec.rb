@@ -7,8 +7,9 @@ RSpec.describe Dryad::Core::Service do
   end
 
   it "create with options" do
-    service = Dryad::Core::Service.new(name: "rails", address: "localhost", group: "staging", priority: 10)
+    service = build(:service)
     expect(service.name).to eq("rails")
     expect(service.address).to eq("localhost")
+    expect(service.portals.size).to eq(1)
   end
 end
