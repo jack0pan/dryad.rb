@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 12.3"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "factory_bot", "~> 5.0"
+  spec.add_development_dependency "webmock", "~> 3.6"
 end
